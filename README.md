@@ -1,8 +1,8 @@
 # Profile Page
 
-Personal profile page for Manav Mahan SINGH (PhD) — a coder-style interactive profile built with Vite + React + TypeScript, deployed via GitHub Pages.
+Personal profile page for Deepen Yadav, Executive Engineer at the Ajmer Development Authority, — a coder-style interactive profile built with Vite + React + TypeScript, deployed via GitHub Pages.
 
-Features: interactive fake shell (`help`, `whoami`, `matrix`, …), editor-style tabs, typewriter hero, theme cycling (green/amber/blue, persisted), skill filters with proficiency meters, collapsible experience entries, scroll-reveal animations, and a scroll progress bar.
+Styled like an engineering drawing: drafting paper in light mode and a blueprint in dark mode. Projects are shown as drawing sheets with status stamps, career history as a survey-style timeline, and the footer as a drawing title block. A **Download CV** button builds a PDF CV in the browser.
 
 ## Local development
 
@@ -13,7 +13,7 @@ npm run dev
 
 ## Deploy to GitHub Pages
 
-Repo: `https://github.com/manavmahan/profile` → live at `https://manavmahan.github.io/profile/`.
+Repo: `https://github.com/deepen-yadav/profile` → live at `https://deepen-yadav.github.io/profile/`.
 
 1. Push:
    ```bash
@@ -26,33 +26,27 @@ Repo: `https://github.com/manavmahan/profile` → live at `https://manavmahan.gi
 
 ## Editing content
 
-All page content lives in `src/data.ts` — edit skills, experience, education, and awards there. Types are in `src/types.ts`.
+All page content lives in `src/data.ts` (profile, projects, experience, education, and expertise). Types are in `src/types.ts`. The portrait is `public/profile.jpg`.
 
 ## Structure
 
 ```
 src/
-├── main.tsx            # entry point
-├── App.tsx             # thin layout shell
-├── data.ts             # all page content (edit here)
-├── types.ts            # shared interfaces
-├── index.css           # theming + styles
+├── main.tsx              # entry point
+├── App.tsx               # page layout
+├── data.ts               # all page content (edit here)
+├── types.ts              # shared interfaces
+├── cv.ts                 # PDF CV generator (jsPDF)
+├── index.css             # drafting-paper / blueprint theme
 ├── hooks/
-│   ├── useTheme.ts     # theme cycling + persistence
-│   ├── useTypewriter.ts
-│   └── useReveal.ts    # IntersectionObserver scroll reveal
+│   ├── useReveal.ts      # IntersectionObserver scroll reveal
+│   └── useScroll.ts
 └── components/
-    ├── Hero.tsx        # photo, typewriter, action buttons
-    ├── Editor.tsx      # tab bar + panel switching
-    ├── SkillsPanel.tsx
-    ├── ExperiencePanel.tsx
-    ├── EducationPanel.tsx
-    ├── CoursesPanel.tsx
-    ├── AwardsPanel.tsx
-    ├── BackToTop.tsx
-    ├── Terminal.tsx    # interactive fake shell
-    ├── MatrixRain.tsx  # easter egg
-    ├── Reveal.tsx      # scroll-reveal wrapper
+    ├── SiteHeader.tsx    # sticky top bar, nav, CV download
+    ├── Hero.tsx          # name, role, photo, key figures
+    ├── Sections.tsx      # projects, career, education, expertise
+    ├── TitleBlock.tsx    # drawing title-block footer
+    ├── Reveal.tsx
     ├── ScrollProgress.tsx
-    └── StatusBar.tsx
+    └── BackToTop.tsx
 ```

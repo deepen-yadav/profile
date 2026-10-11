@@ -1,118 +1,53 @@
-import { useEffect, useRef, useState } from 'react';
-import { profile } from '../data';
-import { exportCv } from '../cv';
-import { useTypewriter } from '../hooks/useTypewriter';
-import { useScroll } from '../hooks/useScroll';
-import { usePhotoShuffle } from '../hooks/usePhotoShuffle';
-import type { Theme } from '../types';
+import { profile, keyFigures } from '../data';
 
-const TYPED_LINES = [
-  'AI Research & Development',
-  'Generative AI for the built world',
-  'BIM × Machine Learning',
-  'PhD, KU Leuven',
-] as const;
+export const photoUrl = `${import.meta.env.BASE_URL}profile.jpg`;
 
-interface HeroProps {
-  theme: Theme;
-  onCycleTheme: () => void;
-}
-
-export default function Hero({ theme, onCycleTheme }: HeroProps) {
-  const [copied, setCopied] = useState(false);
-  const [glitch, setGlitch] = useState(false);
-  const [cvMenuOpen, setCvMenuOpen] = useState(false);
-  const typed = useTypewriter(TYPED_LINES);
-  const { y } = useScroll();
-  const photo = usePhotoShuffle();
-  const cvMenuRef = useRef<HTMLDivElement>(null);
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText(profile.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      /* clipboard unavailable */
-    }
-  }
-
-  useEffect(() => {
-    if (!cvMenuOpen) return;
-    function onClickOutside(e: MouseEvent) {
-      if (cvMenuRef.current && !cvMenuRef.current.contains(e.target as Node)) {
-        setCvMenuOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', onClickOutside);
-    return () => document.removeEventListener('mousedown', onClickOutside);
-  }, [cvMenuOpen]);
-
-  function handleExport(withPublications: boolean) {
-    setCvMenuOpen(false);
-    // open the tab synchronously, in the click handler, so the browser doesn't
-    // treat it as a pop-up once the PDF finishes building after an `await`
-    const tab = window.open('', '_blank');
-    exportCv(withPublications, `${import.meta.env.BASE_URL}${photo}`, theme, tab);
-  }
-
+export default function Hero() {
   return (
-    <header className="hero" style={{ opacity: Math.max(1 - y / 600, 0.25) }}>
-      <div className="photo-wrap" style={{ transform: `translateY(${y * 0.18}px)` }}>
-        <img
-          key={photo}
-          src={`${import.meta.env.BASE_URL}${photo}`}
-          alt={profile.name}
-          className={`photo ${glitch ? 'glitch' : ''}`}
-          onMouseEnter={() => setGlitch(true)}
-          onAnimationEnd={() => setGlitch(false)}
-        />
-      </div>
+    <section className="hero" id="top">
       <div className="hero-text">
-        <p className="hero-comment">{'/** hello, world, I am an aTD */'}</p>
-        <h1>
-          <span className="kw">const</span> me = <span className="str">"{profile.name}"</span>;
-        </h1>
-        <p className="typed">
-          &gt; {typed}
-          <span className="cursor">▊</span>
+        <p className="eyebrow">
+          <span className="eyebrow-mark" /> Government of Rajasthan · Local Self Government Department
         </p>
-        <p className="tagline">{profile.tagline}</p>
-        <div className="hero-actions">
-          <button onClick={copyEmail} className="btn">
-            {copied ? '✓ copied!' : 'copy(email)'}
-          </button>
-          <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">
-            open(linkedin)
-          </a>
-          <a
-            className="btn"
-            href={`${import.meta.env.BASE_URL}${profile.blog}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            read(blog)
-          </a>
-          <div className="cv-export" ref={cvMenuRef}>
-            <button onClick={() => setCvMenuOpen((o) => !o)} className="btn">
-              export(cv.pdf) ▾
-            </button>
-            {cvMenuOpen && (
-              <div className="cv-menu">
-                <button onClick={() => handleExport(true)} className="cv-menu-item">
-                  (+) publications
-                </button>
-                <button onClick={() => handleExport(false)} className="cv-menu-item">
-                  (-) publications
-                </button>
-              </div>
-            )}
-          </div>
-          <button onClick={onCycleTheme} className="btn theme-btn" title={`theme: ${theme}`}>
-            <span className="theme-dot" />
-          </button>
-        </div>
+        <h1>{profile.name}</h1>
+        <p className="hero-role">
+          {profile.title}
+          <span className="sep">/</span>
+          {profile.org}
+        </p>
+        <p className="hero-tagline">{profile.tagline}</p>
+        <p className="hero-loc">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+          </svg>
+          {profile.location}
+        </p>
       </div>
-    </header>
+
+      <figure className="hero-photo">
+        <div className="photo-frame">
+          <img src={photoUrl} alt={profile.name} width={420} height={504} />
+          <span className="crop tl" />
+          <span className="crop tr" />
+          <span className="crop bl" />
+          <span className="crop br" />
+        </div>
+        <figcaption>
+          <span>FIG. 1</span> {profile.name}, {profile.title}
+        </figcaption>
+      </figure>
+
+      <dl className="figures">
+        {keyFigures.map((f) => (
+          <div key={f.label} className="figure">
+            <dt>
+              {f.value}
+              {f.unit && <small>{f.unit}</small>}
+            </dt>
+            <dd>{f.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

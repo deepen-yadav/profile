@@ -1,16 +1,18 @@
-# Manav Mahan Singh (PhD)
+# Deepen Yadav
 
-> AI Research & Development — Generative AI for the built world (BIM × Machine Learning).
+> Executive Engineer, Ajmer Development Authority (Ajmer, Rajasthan, India).
 
-Manav is an AI researcher applying software engineering, machine learning, and generative AI
-to the built environment (BIM/CAD workflows), currently based in Essen, Germany.
+Deepen is a civil engineer in the Rajasthan State Government, having joined the Local Self Government
+Department in 2017. After a first posting of a few months in a municipality, Deepen spent two years at
+the department headquarters in Jaipur, monitoring the department's schemes and projects across the
+state. Since 2019 Deepen has been at the Ajmer Development Authority, taking charge of its
+time-barred projects. These include the 3.5 MLD and 40 MLD sewage treatment plants (both now
+completed) and two housing projects (one completed and occupied, the other expected to be
+completed by March 2027).
 
-## Contact
-
-- LinkedIn: https://www.linkedin.com/in/manav-mahan-singh-871928b1/
-- Email: manav.mahan.singh@live.in
-- Blog: https://manavmahan.github.io/profile/blog/
+Education: M.Tech. in Construction Engineering & Management (IIT Delhi); B.E. (Hons.) in Civil
+Engineering (BITS Pilani).
 
 ## Pages
 
-- [Profile](https://manavmahan.github.io/profile/): skills, experience, education, courses, awards
+- [Profile](https://deepen-yadav.github.io/profile/): experience, education, skills

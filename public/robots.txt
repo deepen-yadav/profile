@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://manavmahan.github.io/profile/sitemap.xml
+Sitemap: https://deepen-yadav.github.io/profile/sitemap.xml

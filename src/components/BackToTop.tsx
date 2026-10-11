@@ -1,6 +1,6 @@
 import { useScroll } from '../hooks/useScroll';
 
-/** Floating "cd ~" button that appears once you scroll down. */
+/** Floating back-to-top button that appears once you scroll down. */
 export default function BackToTop() {
   const { y } = useScroll();
   if (y < 240) return null;
@@ -11,7 +11,7 @@ export default function BackToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       title="back to top"
     >
-      ↑ cd ~
+      ↑ Top
     </button>
   );
 }

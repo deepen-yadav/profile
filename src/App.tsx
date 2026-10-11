@@ -1,31 +1,33 @@
-import { useState } from 'react';
+import SiteHeader from './components/SiteHeader';
 import Hero from './components/Hero';
-import Editor from './components/Editor';
-import Terminal from './components/Terminal';
-import StatusBar from './components/StatusBar';
-import MatrixRain from './components/MatrixRain';
+import { Projects, Career, Education, Expertise } from './components/Sections';
+import TitleBlock from './components/TitleBlock';
 import Reveal from './components/Reveal';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
-import { useTheme } from './hooks/useTheme';
 
 export default function App() {
-  const { theme, cycleTheme } = useTheme();
-  const [matrix, setMatrix] = useState(false);
-
   return (
-    <div className="page">
+    <>
       <ScrollProgress />
-      {matrix && <MatrixRain onClose={() => setMatrix(false)} />}
-      <Hero theme={theme} onCycleTheme={cycleTheme} />
-      <Reveal>
-        <Editor />
-      </Reveal>
-      <Reveal delay={120}>
-        <Terminal onTheme={cycleTheme} onMatrix={() => setMatrix(true)} />
-      </Reveal>
+      <SiteHeader />
+      <main className="page">
+        <Hero />
+        <Reveal>
+          <Projects />
+        </Reveal>
+        <Reveal>
+          <Career />
+        </Reveal>
+        <Reveal>
+          <Education />
+        </Reveal>
+        <Reveal>
+          <Expertise />
+        </Reveal>
+        <TitleBlock />
+      </main>
       <BackToTop />
-      <StatusBar />
-    </div>
+    </>
   );
 }
