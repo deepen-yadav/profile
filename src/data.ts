@@ -34,7 +34,7 @@ export const projects: Project[] = [
     statusLabel: 'Operational',
     summary: 'Inherited as a time-barred project on joining ADA in 2019.',
     actions: [
-      'Rs. 3.0 crore of the defaulting contractor\'s money confiscated',
+      'Rs. 30 million of the defaulting contractor\'s money confiscated',
       'Balance work retendered and restarted',
       'Plant completed and operational today',
     ],
@@ -130,7 +130,7 @@ export const keyFigures: { value: string; unit: string; label: string }[] = [
     unit: '',
     label: 'Time-barred projects completed; the last is due Mar 2027',
   },
-  { value: '3.0', unit: 'Cr', label: 'Rupees confiscated from a defaulting contractor' },
+  { value: '30', unit: 'M', label: 'Rupees confiscated from a defaulting contractor' },
   {
     value: `${new Date().getFullYear() - profile.serviceSince}+`,
     unit: 'yrs',
